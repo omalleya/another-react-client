@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 const App = () => (
     <div>
-        yo my name is Aidan 2
+        yo my name is Aidan, I have a cat named oopsie
     </div>
 );
 
