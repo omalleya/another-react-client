@@ -2,22 +2,23 @@ var path = require('path');
 
 module.exports = {
 	  mode: 'development',
-	  entry: './src/app.js',
+	  entry: './src/app.tsx',
 	  performance: {
 		      hints: false,
 		    },
 	  output: {
 		      filename: 'bundle.js',
-		      path: path.resolve(__dirname, './build')
+		      path: path.resolve(__dirname, './dist')
 		    },
 	  performance: { hints: false },
 	  devServer: {
-    static: {
-      directory: path.join(__dirname, './'),
-	  serveIndex: true
+      static: {
+        directory: path.join(__dirname, './'),
+        serveIndex: true
+      },
+      compress: true,
+      historyApiFallback: true,
     },
-    compress: true
-},
 	  module: {
     rules: [
       {
@@ -29,7 +30,15 @@ module.exports = {
             presets: ['@babel/preset-env']
           }
         }
-      }
+      },
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
     ]
-  }
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
 };
